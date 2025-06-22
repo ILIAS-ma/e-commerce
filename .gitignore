@@ -1,0 +1,41 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> Production specific ###
+# Logs de production
+/var/log/prod.log
+/var/log/dev.log
+
+# Cache de production
+/var/cache/prod/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+
+# Fichiers de configuration sensibles
+.env.prod
+.env.production
+
+# Node modules (si vous utilisez des assets)
+/node_modules/
+
+# Fichiers de déploiement Hostinger
+deploy.sh
+DEPLOYMENT.md
+
+# Fichiers de déploiement Render
+render-build.sh
+RENDER_DEPLOYMENT.md
+###< Production specific ###

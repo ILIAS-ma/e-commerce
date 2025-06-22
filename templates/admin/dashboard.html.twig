@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Dashboard Administrateur</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion des Montres</h5>
+                    <p class="card-text">Ajoutez, modifiez ou supprimez des montres de votre catalogue.</p>
+                    <a href="{{ path('app_montre_index') }}" class="btn btn-primary">Gérer les Montres</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Statistiques</h5>
+                    <p class="card-text">Vue d'ensemble de votre boutique.</p>
+                    <a href="#" class="btn btn-secondary">Voir les Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+    </div>
+</div>
+{% endblock %} 

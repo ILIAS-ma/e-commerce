@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre Catalogue de Montres{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Notre Catalogue</h1>
+            <p class="col-md-8 fs-4">Découvrez notre sélection exclusive de montres d'exception. Chaque pièce est choisie pour sa qualité, son design et sa fiabilité.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if montres is not empty %}
+            {% for montre in montres %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if montre.image %}
+                            <img src="{{ asset('images/montres/' ~ montre.image) }}" class="card-img-top" alt="{{ montre.description }}" style="height: 250px; object-fit: cover;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Image non disponible">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ montre.description }}</h5>
+                            <p class="card-text">
+                                <strong>Matière :</strong> {{ montre.matiere }}<br>
+                                <strong>Taille :</strong> {{ montre.taille }} mm
+                            </p>
+                            <div class="mt-auto">
+                                <span class="fs-4 fw-bold">{{ montre.prix|number_format(2, ',', ' ') }} €</span>
+                                {% if montre.stock > 0 %}
+                                    <span class="badge bg-success float-end">En Stock</span>
+                                {% else %}
+                                    <span class="badge bg-danger float-end">Rupture</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col">
+                <div class="alert alert-info">
+                    Aucune montre n'est disponible dans le catalogue pour le moment.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,47 @@
+framework:
+  # Configuration pour la production
+  secret: "%env(APP_SECRET)%"
+
+  # Session
+  session:
+    handler_id: null
+    cookie_secure: auto
+    cookie_samesite: lax
+    storage_factory_id: session.storage.factory.native
+
+  # Cache
+  cache:
+    app: cache.adapter.filesystem
+    system: cache.adapter.system
+    directory: "%kernel.cache_dir%/pools"
+    default_doctrine_provider: "doctrine.system_cache_pool"
+
+  # Assets
+  assets:
+    json_manifest_path: "%kernel.project_dir%/public/build/manifest.json"
+
+  # Profiler (désactivé en production)
+  profiler:
+    only_exceptions: false
+    collect: false
+
+  # Router
+  router:
+    cache_dir: "%kernel.cache_dir%"
+    default_uri: null
+
+  # Validation
+  validation:
+    email_validation_mode: html5
+
+  # Serializer
+  serializer:
+    cache: "cache.serializer"
+
+  # Workflows
+  workflows: null
+
+  # PHP errors
+  php_errors:
+    log: true
+    throw: false

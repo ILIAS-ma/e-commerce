@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - WatchHouse{% endblock %}
+
+{% block body %}
+{# Hero Section #}
+<div class="container-fluid text-white text-center" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80'); background-size: cover; background-position: center; padding: 10rem 0;">
+    <h1 class="display-3" style="font-family: 'Playfair Display', serif;">L'Élégance à votre Poignet</h1>
+    <p class="lead col-lg-6 mx-auto">Découvrez des pièces d'horlogerie d'exception, alliant tradition et innovation.</p>
+    <a href="{{ path('app_catalogue') }}" class="btn btn-light btn-lg mt-3">Explorer le Catalogue</a>
+</div>
+
+{# Featured Products Section #}
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="font-family: 'Playfair Display', serif;">Nos Nouveautés</h2>
+    <div class="row">
+        {% if featured_montres is not empty %}
+            {% for montre in featured_montres %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 card-hover-effect">
+                        <a href="#" class="text-decoration-none text-dark">
+                            {% if montre.image %}
+                                <img src="{{ asset('images/montres/' ~ montre.image) }}" class="card-img-top" alt="{{ montre.description }}" style="height: 250px; object-fit: cover;">
+                            {% else %}
+                                <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Image non disponible">
+                            {% endif %}
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ montre.description }}</h5>
+                                <div class="mt-auto">
+                                    <span class="fs-4 fw-bold">{{ montre.prix|number_format(2, ',', ' ') }} €</span>
+                                    {% if montre.stock > 0 %}
+                                        <span class="badge bg-success float-end">En Stock</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col">
+                <p class="text-center">Les nouveautés arrivent bientôt.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

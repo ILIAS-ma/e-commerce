@@ -1,0 +1,43 @@
+security:
+  # Disable debug mode in production
+  enable_authenticator_manager: true
+
+  # Configure session security
+  session_fixation_strategy: migrate
+  session_regenerate_id: true
+
+  # Password hashing
+  password_hashers:
+    App\Entity\User:
+      algorithm: auto
+
+  # Access control
+  access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/login, roles: PUBLIC_ACCESS }
+    - { path: ^/register, roles: PUBLIC_ACCESS }
+    - { path: ^/, roles: PUBLIC_ACCESS }
+
+  # Firewalls
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      lazy: true
+      provider: app_user_provider
+      custom_authenticator: App\Security\AppcustomauthAuthenticator
+      logout:
+        path: app_logout
+        target: app_home
+      remember_me:
+        secret: "%kernel.secret%"
+        lifetime: 604800 # 1 week
+        path: /
+
+  # User providers
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
