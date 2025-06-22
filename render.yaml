@@ -4,9 +4,8 @@ services:
     env: php
     region: oregon
     buildCommand: |
-      composer install --no-dev --optimize-autoloader --no-interaction
-      php bin/console cache:clear --env=prod --no-interaction
-      php bin/console cache:warmup --env=prod --no-interaction
+      chmod +x build.sh
+      ./build.sh
     startCommand: "php -S 0.0.0.0:$PORT -t public"
     plan: free
     envVars:
