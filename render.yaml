@@ -2,6 +2,7 @@ services:
   - type: web
     name: mon-site-montres
     env: php
+    region: oregon
     buildCommand: |
       composer install --no-dev --optimize-autoloader --no-interaction
       php bin/console cache:clear --env=prod --no-interaction
