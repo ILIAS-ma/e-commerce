@@ -3,8 +3,9 @@ services:
     name: mon-site-montres
     env: php
     buildCommand: |
-      chmod +x render-build.sh
-      ./render-build.sh
+      composer install --no-dev --optimize-autoloader --no-interaction
+      php bin/console cache:clear --env=prod --no-interaction
+      php bin/console cache:warmup --env=prod --no-interaction
     startCommand: "php -S 0.0.0.0:$PORT -t public"
     plan: free
     envVars:
